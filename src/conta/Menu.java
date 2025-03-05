@@ -1,15 +1,27 @@
 package conta;
 
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import conta.controller.ContaController;
+import conta.util.Cores;
+
 
 public class Menu {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		ContaController contas = new ContaController();
+		
 Scanner leia = new Scanner(System.in);
 		
-		int opcao;
+		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
+        String titular;
+        
+        float saldo, limite, valor;
+        
 		
 		while (true) {
 		
@@ -33,15 +45,27 @@ Scanner leia = new Scanner(System.in);
 		System.out.println("Entre com a opção desejada:                          ");
 		System.out.println("                                                     ");
 
-		opcao = leia.nextInt();
-		if (opcao ==9) {
-			System.out.println("\nBanco do Brasil com Z - O seu futuro começa aqui!");
+		
+		try {
+	 		opcao = leia.nextInt();
+    	
+	 	} catch (InputMismatchException e) {
+    	
+	    		System.out.println("\nDigite valores inteiros!");
+	    		leia.nextLine();
+	    		opcao = 0;
+	 	}
+			
+		if (opcao == 9) {
+			System.out.println(Cores.TEXT_WHITE_BOLD + "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
 			sobre();
 			leia.close();
 			System.exit(0);
 		}
 		
+		
 		switch (opcao) {
+		
 		case 1:
 			System.out.println("Criar Conta\n\n");
 
@@ -92,9 +116,4 @@ public static void sobre() {
 	System.out.println("ghttps://github.com/dsilvasantosgit");
 	System.out.println("*********************************************************");
 }
-
-	
-
-
-
-	}
+}
